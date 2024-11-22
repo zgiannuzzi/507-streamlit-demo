@@ -26,15 +26,15 @@ st.dataframe(df)
 
 
 
-table = pd.pivot_table(df, values='student_count', index=['week'],
-                       columns=['learning_modality'], aggfunc="sum")
+#table = pd.pivot_table(df, values='student_count', index=['week'],
+                       #columns=['learning_modality'], aggfunc="sum")
 
-table = table.reset_index()
+#table = table.reset_index()
 #table.columns
 
-table2 = pd.pivot_table(df, values='student_count', index=['state'],
+plot = pd.pivot_table(df, values='student_count', index=['state'],
                        columns=['learning_modality'], aggfunc="sum")
-table2 = table.reset_index()
+plot = plot.reset_index()
 
 learning_hybrid = df[df['learning_modality'] == 'Hybrid']
 learning_person = df[df['learning_modality'] == 'In Person']
@@ -43,7 +43,7 @@ learning_remote = df[df['learning_modality'] == 'Remote']
 status = st.radio("Select type of learning: ", ('Hybrid','In Person','Remote'))
 if(status == 'Hybrid'):
     st.dataframe(learning_hybrid)
-    st.bar_chart(table2,x = "state",y = "Hybrid")
+    st.bar_chart(plot,x = "state",y = "Hybrid")
 elif(status == 'In Person'):
     st.dataframe(learning_person)
 else:
