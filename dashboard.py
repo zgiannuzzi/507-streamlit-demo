@@ -34,6 +34,8 @@ table = table.reset_index()
 
 table2 = pd.pivot_table(df, values='student_count', index=['state'],
                        columns=['learning_modality'], aggfunc="sum")
+table2 = table.reset_index()
+
 learning_hybrid = df[df['learning_modality'] == 'Hybrid']
 learning_person = df[df['learning_modality'] == 'In Person']
 learning_remote = df[df['learning_modality'] == 'Remote']
