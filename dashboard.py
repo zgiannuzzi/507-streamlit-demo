@@ -46,13 +46,19 @@ if(status == 'Hybrid'):
     st.bar_chart(plot,x = "state",y = "Hybrid")
 elif(status == 'In Person'):
     st.dataframe(learning_person)
+    st.bar_chart(plot,x = "state",y = "In Person")
 else:
     st.dataframe(learning_remote)
+    st.bar_chart(plot,x = "state",y = "Remote")
 ## line chart by week
 
 
 Learning = st.multiselect("Type of learning: ",
                          ['Hybrid', 'In Person', 'Remote'])
+if(len(Learning) == 1):
+   st.bar_chart(plot,x = "state",y = Learning[1]) 
+else:
+    print("whats up") 
 
 """ 
 st.bar_chart(
