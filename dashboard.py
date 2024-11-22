@@ -43,7 +43,7 @@ learning_remote = df[df['learning_modality'] == 'Remote']
 status = st.radio("Select type of learning: ", ('Hybrid','In Person','Remote'))
 if(status == 'Hybrid'):
     st.dataframe(learning_hybrid)
-    st.bar_chart(table2,x = "State",Y = "Hybrid")
+    st.bar_chart(table2,x = "state",Y = "Hybrid")
 elif(status == 'In Person'):
     st.dataframe(learning_person)
 else:
