@@ -24,23 +24,21 @@ col3.metric("Number of unique districts/schools:", df['district_name'].nunique()
 ## exposing first 1k of NCES 20-21 data
 st.dataframe(df)
 
-
-
-#table = pd.pivot_table(df, values='student_count', index=['week'],
-                       #columns=['learning_modality'], aggfunc="sum")
-
-#table = table.reset_index()
-#table.columns
-
+#Create a new table 
 plot = pd.pivot_table(df, values='student_count', index=['state'],
                        columns=['learning_modality'], aggfunc="sum")
 plot = plot.reset_index()
 
+#Seperate data by Learning type
 learning_hybrid = df[df['learning_modality'] == 'Hybrid']
 learning_person = df[df['learning_modality'] == 'In Person']
 learning_remote = df[df['learning_modality'] == 'Remote']
 
-status = st.radio("Select type of learning: ", ('Hybrid','In Person','Remote'))
+st.subheader("Select one of the buttoms and it gives you a list and bar plot based off the button selected")
+
+#Creates radio buttons to allow you select type of learning
+status = st.radio("Select type of learning to see a general overview of specific learning type data: ", ('Hybrid','In Person','Remote'))
+#Checks which radio button is selected and provides bar plot for the selection
 if(status == 'Hybrid'):
     st.dataframe(learning_hybrid)
     st.bar_chart(plot,x = "state",y = "Hybrid")
@@ -52,31 +50,22 @@ else:
     st.bar_chart(plot,x = "state",y = "Remote")
 ## line chart by week
 
-
-Learning = st.multiselect("Type of learning: ",
+st.subheader("Select one or more of the options and it builds a barplot based off type of Learning, Student count, and State")
+#Creates mulitselect box
+Learning = st.multiselect("Select the type of learning you wish to see relative to Student count and State : ",
                          ['Hybrid', 'In Person', 'Remote'])
-"""
-if(len(Learning) == 1):
-   st.bar_chart(plot,x = "state",y = Learning[0]) 
-else:
-    st.bar_chart(plot,x = "state",y = Learning[1]) 
-"""
-""" 
-st.bar_chart(
-    table,
-    x="week",
-    y="Hybrid",
-)
+#As long as an option is selected display a bar chart with the information
+if(len(Learning) > 0):
+    st.bar_chart(plot,x = "state",y = Learning) 
 
-st.bar_chart(
-    table,
-    x="week",
-    y="In Person",
-)
 
-st.bar_chart(
-    table,
-    x="week",
-    y="Remote",
+st.text("""I wanted to be able to create a barplot based of a range of student counts but I could not figure out how to get the types to match and plot them""")
+#Started to try and add slider functionality but had no luck 
+Student_count = st.slider(
+    "Schedule your appointment:", value=(0, 25000000)
 )
-"""
+if(Student_count[0] > 0):
+    plot2 = pd.pivot_table(df, values=(Student_count[0],Student_count[1]), index=['state'],
+                       columns=['learning_modality'], aggfunc="sum")
+    plot2 = plot2.reset_index()
+    st.bar_chart(plot2,x = "state",y = Learning)
