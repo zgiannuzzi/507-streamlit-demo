@@ -2,7 +2,7 @@
 Streamlit demo 2024 fall using github codespaces 
 
 ## Public URL for dashboard 
-
+https://507-app-demo-7s9ejcdebnl4icknhpqy2v.streamlit.app/
 
 ## Brief description
 
