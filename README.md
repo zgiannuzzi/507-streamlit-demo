@@ -1,2 +1,12 @@
 # 507-streamlit-demo
 Streamlit demo 2024 fall using github codespaces 
+
+## Public URL for dashboard 
+
+
+## Brief description
+
+- Added some functionality to dashboard
+- Included Radio buttons and base off option selected gives data back and aslo shows a barplot 
+- Added multiselect feature that allows you to see a barplot of the Learning types that you slecte for each state. 
+- Tried to add the abilty to create a bar plot based off a slider range but was unsucessful in getting it to work. 
