@@ -58,7 +58,7 @@ Learning = st.multiselect("Type of learning: ",
 if(len(Learning) == 1):
    st.bar_chart(plot,x = "state",y = Learning[0]) 
 else:
-    print("whats up") 
+    st.bar_chart(plot,x = "state",y = Learning[1]) 
 
 """ 
 st.bar_chart(
