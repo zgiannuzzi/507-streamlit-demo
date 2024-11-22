@@ -30,23 +30,29 @@ table = pd.pivot_table(df, values='student_count', index=['week'],
                        columns=['learning_modality'], aggfunc="sum")
 
 table = table.reset_index()
-table.columns
+#table.columns
 
-
+table2 = pd.pivot_table(df, values='student_count', index=['state'],
+                       columns=['learning_modality'], aggfunc="sum")
 learning_hybrid = df[df['learning_modality'] == 'Hybrid']
 learning_person = df[df['learning_modality'] == 'In Person']
 learning_remote = df[df['learning_modality'] == 'Remote']
-learning_week = df[df['learning_modality'] == 'Week']
-status = st.radio("Select type of learning: ", ('Week', 'Hybrid','In Person','Remote'))
-if (status == 'Week'):
-    st.dataframe(learning_week)
-elif(status == 'Hybrid'):
+
+status = st.radio("Select type of learning: ", ('Hybrid','In Person','Remote'))
+if(status == 'Hybrid'):
     st.dataframe(learning_hybrid)
+    st.bar_chart(table2,x = "State",Y = "Hybrid")
 elif(status == 'In Person'):
     st.dataframe(learning_person)
 else:
     st.dataframe(learning_remote)
-## line chart by week 
+## line chart by week
+
+
+Learning = st.multiselect("Type of learning: ",
+                         ['Hybrid', 'In Person', 'Remote'])
+
+""" 
 st.bar_chart(
     table,
     x="week",
@@ -64,3 +70,4 @@ st.bar_chart(
     x="week",
     y="Remote",
 )
+"""
