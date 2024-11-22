@@ -55,11 +55,12 @@ else:
 
 Learning = st.multiselect("Type of learning: ",
                          ['Hybrid', 'In Person', 'Remote'])
+"""
 if(len(Learning) == 1):
    st.bar_chart(plot,x = "state",y = Learning[0]) 
 else:
     st.bar_chart(plot,x = "state",y = Learning[1]) 
-
+"""
 """ 
 st.bar_chart(
     table,
