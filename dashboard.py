@@ -32,6 +32,15 @@ table = pd.pivot_table(df, values='student_count', index=['week'],
 table = table.reset_index()
 table.columns
 
+status = st.radio("Select type of learning: ", ('Week', 'Hybrid','In Person','Remote'))
+if (status == 'Week'):
+    st.success("Week")
+elif(status == 'Hybrid'):
+    st.success("Hybrid")
+elif(status == 'In Person'):
+    st.success("Remote")
+else:
+    st.success("Remote")
 ## line chart by week 
 st.bar_chart(
     table,
